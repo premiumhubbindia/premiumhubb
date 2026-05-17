@@ -203,14 +203,14 @@ export default function AdminPage() {
 
   async function addProduct() {
 
-    if (
-      !title ||
-      !description ||
-      !category ||
-      !validity ||
-      !price ||
-      !image
-    ) {
+if (
+  !title ||
+  !description ||
+  !category ||
+  !validity ||
+  !price ||
+  (!image && !editingId)
+) {
 
       toast.error(
         "Fill All Fields"

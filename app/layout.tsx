@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 import {
   Geist,
@@ -98,7 +99,7 @@ export default function RootLayout({
         />
 
         {children}
-
+<WhatsAppButton />
       </body>
 
     </html>

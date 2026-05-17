@@ -53,7 +53,7 @@ export default function Snowfall() {
         particles: {
 
           number: {
-            value: 60,
+            value: 80,
             density: {
               enable: true,
               area: 800,
@@ -82,8 +82,8 @@ export default function Snowfall() {
 
           size: {
             value: {
-              min: 1,
-              max: 4,
+              min: 4,
+              max: 12,
             },
           },
 
@@ -93,7 +93,7 @@ export default function Snowfall() {
 
           move: {
             enable: true,
-            speed: 1.2,
+            speed: 2,
             direction: "bottom",
             random: true,
             straight: false,
