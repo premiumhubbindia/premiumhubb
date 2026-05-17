@@ -8,7 +8,6 @@ import {
   ChevronDown,
   Mail,
   Phone,
-  Instagram,
   ShieldCheck,
 } from "lucide-react";
 
@@ -224,7 +223,7 @@ export default function Footer() {
 
               <div className="flex items-center gap-3">
 
-                <Instagram size={20} />
+                <div className="w-5 h-5 rounded-full bg-pink-500" />
 
                 @premiumhubb
 
@@ -241,8 +240,6 @@ export default function Footer() {
         {footerTab && (
 
           <div className="mt-14 bg-zinc-900 border border-yellow-500/20 rounded-3xl p-8">
-
-            {/* ABOUT */}
 
             {footerTab === "about" && (
 
@@ -270,8 +267,6 @@ export default function Footer() {
               </div>
 
             )}
-
-            {/* CONTACT */}
 
             {footerTab === "contact" && (
 
@@ -303,7 +298,7 @@ export default function Footer() {
 
                   <div className="flex items-center gap-4">
 
-                    <Instagram size={22} />
+                    <div className="w-6 h-6 rounded-full bg-pink-500" />
 
                     @premiumhubb
 
@@ -314,8 +309,6 @@ export default function Footer() {
               </div>
 
             )}
-
-            {/* SERVICES */}
 
             {footerTab === "services" && (
 
@@ -358,8 +351,6 @@ export default function Footer() {
               </div>
 
             )}
-
-            {/* FAQ */}
 
             {footerTab === "faq" && (
 
@@ -410,8 +401,6 @@ export default function Footer() {
               </div>
 
             )}
-
-            {/* DELIVERY */}
 
             {footerTab === "delivery" && (
 
