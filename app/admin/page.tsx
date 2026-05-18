@@ -350,6 +350,34 @@ if (
     );
   }
 
+async function replyToMessage(
+  id: number,
+  reply: string
+) {
+
+  const { error } =
+    await supabase
+      .from("support_messages")
+      .update({
+        admin_reply: reply,
+        replied: true,
+      })
+      .eq("id", id);
+
+  if (error) {
+
+    toast.error(error.message);
+
+  } else {
+
+    toast.success(
+      "Reply Sent!"
+    );
+
+    fetchMessages();
+  }
+}
+
   function editProduct(
     product: any
   ) {
@@ -1066,21 +1094,19 @@ if (
 
           {/* EMAIL REPLY */}
 
-          <a
-            href={`mailto:${msg.user_email}?subject=PremiumHubb Support Reply&body=${encodeURIComponent(
-              msg.reply || ""
-            )}`}
-          >
+<button
+  onClick={() =>
+    replyToMessage(
+      msg.id,
+      msg.reply || ""
+    )
+  }
+  className="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-2xl font-black transition"
+>
 
-            <button
-              className="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-2xl font-black transition"
-            >
+  Send Reply
 
-              Reply By Email
-
-            </button>
-
-          </a>
+</button>
 
           {/* WHATSAPP REPLY */}
 

@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
 
 import { supabase } from "@/lib/supabase";
 
@@ -15,6 +18,41 @@ export default function SupportPage() {
 
   const [loading, setLoading] =
     useState(false);
+
+  const [messages, setMessages] =
+    useState<any[]>([]);
+
+  useEffect(() => {
+
+    fetchMessages();
+
+  }, []);
+
+  async function fetchMessages() {
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) return;
+
+    const { data, error } =
+      await supabase
+        .from("support_messages")
+        .select("*")
+        .eq(
+          "user_email",
+          user.email
+        )
+        .order("id", {
+          ascending: false,
+        });
+
+    if (!error && data) {
+
+      setMessages(data);
+    }
+  }
 
   async function sendMessage() {
 
@@ -59,6 +97,8 @@ export default function SupportPage() {
       );
 
       setMessage("");
+
+      fetchMessages();
     }
   }
 
@@ -143,6 +183,55 @@ export default function SupportPage() {
               </p>
 
             </div>
+
+          </div>
+
+          {/* PREVIOUS MESSAGES */}
+
+          <div className="mt-10 space-y-6">
+
+            {messages.map((msg) => (
+
+              <div
+                key={msg.id}
+                className="bg-zinc-800 border border-yellow-500/10 rounded-3xl p-6"
+              >
+
+                <h3 className="text-yellow-400 font-bold">
+
+                  Your Message
+
+                </h3>
+
+                <p className="text-zinc-300 mt-3 leading-7">
+
+                  {msg.message}
+
+                </p>
+
+                {msg.admin_reply && (
+
+                  <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-5 mt-6">
+
+                    <h3 className="text-green-400 font-bold mb-3">
+
+                      Admin Reply
+
+                    </h3>
+
+                    <p className="text-zinc-300 leading-7">
+
+                      {msg.admin_reply}
+
+                    </p>
+
+                  </div>
+
+                )}
+
+              </div>
+
+            ))}
 
           </div>
 
