@@ -267,17 +267,23 @@ export default function OrdersPage() {
 
                         </h2>
 
-                        <div
-                          className={`flex items-center gap-3 px-5 py-3 rounded-2xl font-black ${
-                            order.status ===
-                            "Delivered"
-                              ? "bg-green-500/20 text-green-400"
-                              : order.status ===
-                                "Cancelled"
-                              ? "bg-red-500/20 text-red-400"
-                              : "bg-yellow-500/20 text-yellow-400"
-                          }`}
-                        >
+<div
+  className={`flex items-center gap-3 px-5 py-3 rounded-2xl font-black ${
+    order.status ===
+    "Delivered"
+      ? "bg-green-500/20 text-green-400"
+      : order.status ===
+        "Cancelled"
+      ? "bg-red-500/20 text-red-400"
+      : order.status ===
+        "Processing"
+      ? "bg-blue-500/20 text-blue-400"
+      : order.status ===
+        "Pending"
+      ? "bg-orange-500/20 text-orange-400"
+      : "bg-yellow-500/20 text-yellow-400"
+  }`}
+>
 
                           {getStatusIcon(
                             order.status

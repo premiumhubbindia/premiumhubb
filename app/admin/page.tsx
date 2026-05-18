@@ -978,37 +978,79 @@ async function replyToMessage(
 
                 </div>
 
-                <div className="flex gap-3 h-fit">
+<div className="flex flex-wrap gap-3 h-fit">
 
-                  <button
-                    onClick={() =>
-                      updateOrderStatus(
-                        order.id,
-                        "Delivered"
-                      )
-                    }
-                    className="bg-green-600 hover:bg-green-700 px-5 py-3 rounded-2xl font-bold"
-                  >
+  <button
+    onClick={() =>
+      updateOrderStatus(
+        order.id,
+        "Ordered"
+      )
+    }
+    className="bg-yellow-500 hover:bg-yellow-600 text-black px-5 py-3 rounded-2xl font-bold"
+  >
 
-                    Delivered
+    Ordered
 
-                  </button>
+  </button>
 
-                  <button
-                    onClick={() =>
-                      updateOrderStatus(
-                        order.id,
-                        "Cancelled"
-                      )
-                    }
-                    className="bg-red-600 hover:bg-red-700 px-5 py-3 rounded-2xl font-bold"
-                  >
+  <button
+    onClick={() =>
+      updateOrderStatus(
+        order.id,
+        "Processing"
+      )
+    }
+    className="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded-2xl font-bold"
+  >
 
-                    Cancel
+    Processing
 
-                  </button>
+  </button>
 
-                </div>
+  <button
+    onClick={() =>
+      updateOrderStatus(
+        order.id,
+        "Delivered"
+      )
+    }
+    className="bg-green-600 hover:bg-green-700 px-5 py-3 rounded-2xl font-bold"
+  >
+
+    Delivered
+
+  </button>
+
+  <button
+    onClick={() =>
+      updateOrderStatus(
+        order.id,
+        "Pending"
+      )
+    }
+    className="bg-orange-500 hover:bg-orange-600 px-5 py-3 rounded-2xl font-bold"
+  >
+
+    Pending
+
+  </button>
+
+  <button
+    onClick={() =>
+      updateOrderStatus(
+        order.id,
+        "Cancelled"
+      )
+    }
+    className="bg-red-600 hover:bg-red-700 px-5 py-3 rounded-2xl font-bold"
+  >
+
+    Cancelled
+
+  </button>
+
+</div>
 
               </div>
 

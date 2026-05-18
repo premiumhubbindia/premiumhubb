@@ -186,7 +186,7 @@ export default function CheckoutPage() {
                         .razorpay_payment_id,
 
                     status:
-                      "Delivered",
+                      "Ordered",
                   },
                 ]);
 
