@@ -208,8 +208,7 @@ if (
   !description ||
   !category ||
   !validity ||
-  !price ||
-  (!image && !editingId)
+  !price
 ) {
 
       toast.error(
@@ -995,56 +994,141 @@ if (
 
       {/* SUPPORT */}
 
-      <div className="mt-24">
+{/* SUPPORT */}
 
-        <h2 className="text-4xl font-black mb-10">
+<div className="mt-24">
 
-          Support Messages
+  <h2 className="text-4xl font-black mb-10">
 
-        </h2>
+    Support Messages
 
-        <div className="space-y-6">
+  </h2>
 
-          {messages.map((msg) => (
+  <div className="space-y-6">
 
-            <div
-              key={msg.id}
-              className="bg-zinc-900 border border-yellow-500/20 rounded-3xl p-6"
+    {messages.map((msg) => (
+
+      <div
+        key={msg.id}
+        className="bg-zinc-900 border border-yellow-500/20 rounded-3xl p-6"
+      >
+
+        {/* CUSTOMER EMAIL */}
+
+        <h3 className="text-yellow-400 font-bold text-2xl break-all">
+
+          {msg.user_email}
+
+        </h3>
+
+        {/* CUSTOMER MESSAGE */}
+
+        <div className="bg-zinc-800 rounded-2xl p-5 mt-5">
+
+          <p className="text-zinc-300 leading-8">
+
+            {msg.message}
+
+          </p>
+
+        </div>
+
+        {/* REPLY TEXTAREA */}
+
+        <textarea
+          placeholder="Write reply to customer..."
+          value={msg.reply || ""}
+          onChange={(e) => {
+
+            const updatedMessages =
+              messages.map((m) =>
+
+                m.id === msg.id
+                  ? {
+                      ...m,
+                      reply:
+                        e.target.value,
+                    }
+                  : m
+
+              );
+
+            setMessages(
+              updatedMessages
+            );
+          }}
+          className="w-full bg-zinc-800 border border-yellow-500/10 rounded-2xl p-5 mt-6 h-36 outline-none resize-none"
+        />
+
+        {/* ACTION BUTTONS */}
+
+        <div className="flex flex-wrap gap-4 mt-6">
+
+          {/* EMAIL REPLY */}
+
+          <a
+            href={`mailto:${msg.user_email}?subject=PremiumHubb Support Reply&body=${encodeURIComponent(
+              msg.reply || ""
+            )}`}
+          >
+
+            <button
+              className="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-2xl font-black transition"
             >
 
-              <h3 className="text-yellow-400 font-bold text-2xl">
+              Reply By Email
 
-                {msg.user_email}
+            </button>
 
-              </h3>
+          </a>
 
-              <p className="text-zinc-300 mt-5 leading-8">
+          {/* WHATSAPP REPLY */}
 
-                {msg.message}
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(
+              `Hello from PremiumHubb Support\n\n${msg.reply || ""}`
+            )}`}
+            target="_blank"
+          >
 
-              </p>
+            <button
+              className="bg-emerald-500 hover:bg-emerald-600 px-6 py-3 rounded-2xl font-black transition"
+            >
 
-              <button
-                onClick={() =>
-                  deleteMessage(
-                    msg.id
-                  )
-                }
-                className="mt-6 bg-red-600 hover:bg-red-700 px-6 py-3 rounded-2xl font-bold"
-              >
+              Reply By WhatsApp
 
-                Delete Message
+            </button>
 
-              </button>
+          </a>
 
-            </div>
+          {/* DELETE BUTTON */}
 
-          ))}
+          <button
+            onClick={() =>
+              deleteMessage(
+                msg.id
+              )
+            }
+            className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-2xl font-black transition"
+          >
+
+            Delete Message
+
+          </button>
 
         </div>
 
       </div>
 
-    </div>
+    ))}
+
+  </div>
+
+</div>
+          
+
+        </div>
+
+
   );
 }
